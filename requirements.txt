@@ -1,0 +1,5 @@
+Flask
+Flask-HTTPAuth
+flask-restplus
+Flask-SQLAlchemy
+SQLAlchemy
