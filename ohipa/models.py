@@ -2,6 +2,7 @@ from . import db
 from sqlalchemy import Column, Integer, String, ForeignKey
 from passlib.apps import custom_app_context as pwd_context
 
+
 class Users(db.Model):
     db.__tablename__ = "Users"
     db.__mapper__ = {"column_prefix": "Users"}
@@ -21,9 +22,10 @@ class Users(db.Model):
     def __repr__(self):
         return f"Users('{self.user_ID}', '{self.nom_User}', '{self.prenom_User}', '{self.username}', '{self.Offres}')"
 
+
 class Offres(db.Model):
-    db.__tablename__= "Offres"
-    db.__mapper__= {"column_prefix": "Offres"}
+    db.__tablename__ = "Offres"
+    db.__mapper__ = {"column_prefix": "Offres"}
     offre_ID = Column(Integer, primary_key=True, nullable=False)
     offre_Details = Column(String(200), nullable=False)
     prix = Column(String(30), nullable=False)
@@ -38,14 +40,15 @@ class Offres(db.Model):
 
 
 class Categorie(db.Model):
-    db.__tablename__="Categorie"
-    db.__mapper__= {"column_prefix": "Categorie"}
+    db.__tablename__ = "Categorie"
+    db.__mapper__ = {"column_prefix": "Categorie"}
     categorie_Id = Column(Integer, nullable=False, primary_key=True)
     categorie_Nom = Column(String(20), nullable=False)
     Offres = db.relationship('Offres', backref='Categorie')
 
     def __repr__(self):
         return f"Categories('{self.categories_Id}','{self.categories_Name}', '{self.offre}')"
+
 
 class Commune(db.Model):
     db.__tablename__ = "Commune"
@@ -57,6 +60,7 @@ class Commune(db.Model):
 
     def __repr__(self):
         return f"Commune('{self.commune_ID}', '{self.commune_Nom}')"
+
 
 class Ile(db.Model):
     db.__tablename__ = "Ile"

@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from ohipa import create_app
 import argparse
 import os
@@ -17,7 +18,8 @@ def get_full_path(file_path = None):
 def main(argv=None):
     args = parse_args(argv)
     app = create_app(get_full_path(args.config))
-    app.run(host='0.0.0.0', port=5000)
+    port = int(os.environ.get("PORT", 443))
+    app.run(host="0.0.0.0", port=port)
 
 if __name__ == '__main__':
     main()
