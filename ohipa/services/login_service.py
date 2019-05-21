@@ -4,7 +4,7 @@ from flask_httpauth import HTTPBasicAuth
 from flask import request
 
 auth = HTTPBasicAuth()
-api = Namespace('login', description= 'login')
+api = Namespace('Login', description= 'Test de la méthode de login')
 credential = api.model('user', {
     'username': fields.String,
     'password': fields.String

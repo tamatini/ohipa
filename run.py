@@ -18,7 +18,7 @@ def get_full_path(file_path = None):
 def main(argv=None):
     args = parse_args(argv)
     app = create_app(get_full_path(args.config))
-    port = int(os.environ.get("PORT", 443))
+    port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
 
 if __name__ == '__main__':

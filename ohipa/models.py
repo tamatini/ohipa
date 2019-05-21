@@ -29,25 +29,24 @@ class Offres(db.Model):
     offre_ID = Column(Integer, primary_key=True, nullable=False)
     offre_Details = Column(String(200), nullable=False)
     prix = Column(String(30), nullable=False)
-    user_Id = Column(Integer, ForeignKey("users.user_ID"))
-    categorie_Id = Column(Integer, ForeignKey("categorie.categorie_Id"))
-    commune_Id = Column(Integer, ForeignKey("commune.commune_ID"))
-    ile_Id = Column(Integer, ForeignKey("ile.ile_ID"))
+    user_ID = Column(Integer, ForeignKey("users.user_ID"))
+    categorie_ID = Column(Integer, ForeignKey("categorie.categorie_ID"))
+    commune_ID = Column(Integer, ForeignKey("commune.commune_ID"))
+    ile_ID = Column(Integer, ForeignKey("ile.ile_ID"))
 
     def __repr__(self):
-        return f"Offres('{self.offre_ID}', '{self.offre_Details}', '{self.Categories}', '{self.user_Id}')," \
-            f"'{self.commune_Id}', '{self.ile_Id}'"
+        return f"Offres('{self.offre_ID}', '{self.offre_Details}', '{self.Categories}', '{self.user_ID}')," \
+            f"'{self.commune_ID}', '{self.ile_ID}'"
 
 
 class Categorie(db.Model):
     db.__tablename__ = "Categorie"
     db.__mapper__ = {"column_prefix": "Categorie"}
-    categorie_Id = Column(Integer, nullable=False, primary_key=True)
+    categorie_ID = Column(Integer, nullable=False, primary_key=True)
     categorie_Nom = Column(String(20), nullable=False)
-    Offres = db.relationship('Offres', backref='Categorie')
 
     def __repr__(self):
-        return f"Categories('{self.categories_Id}','{self.categories_Name}', '{self.offre}')"
+        return f"Categories('{self.categories_ID}','{self.categories_Name}')"
 
 
 class Commune(db.Model):
@@ -56,10 +55,9 @@ class Commune(db.Model):
     commune_ID = Column(Integer, nullable=False, primary_key=True)
     commune_Nom = Column(String(30), nullable=False)
     ile_ID = Column(Integer, ForeignKey('ile.ile_ID'))
-    Offres = db.relationship('Offres', backref='Commune')
 
     def __repr__(self):
-        return f"Commune('{self.commune_ID}', '{self.commune_Nom}')"
+        return f"Commune('{self.commune_ID}', '{self.commune_Nom}', '{self.ile_ID}')"
 
 
 class Ile(db.Model):
@@ -68,7 +66,6 @@ class Ile(db.Model):
     ile_ID = Column(Integer, nullable=False, primary_key=True)
     ile_Nom = Column(String(30), nullable=False)
     communes = db.relationship('Commune', backref='ile')
-    Offres = db.relationship('Offres', backref='Ile')
 
     def __repr__(self):
         return f"('{self.ile_ID}', '{self.ile_Nom}', '{self.communes}'"

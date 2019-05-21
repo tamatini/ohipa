@@ -1,5 +1,7 @@
-Flask
+flask
 Flask-HTTPAuth
 flask-restplus
 Flask-SQLAlchemy
 SQLAlchemy
+passlib
+psycopg2-binary
