@@ -7,7 +7,7 @@ class Users(db.Model):
     db.__tablename__ = "Users"
     db.__mapper__ = {"column_prefix": "Users"}
     user_ID = Column(Integer, primary_key=True, nullable=False)
-    username = Column(String(30), nullable=False, unique=True)
+    user_Mail = Column(String(30), nullable=False, unique=True)
     nom_User = Column(String(30), nullable=False, unique=False)
     prenom_User = Column(String(30), nullable=False, unique=False)
     password_User = Column(String(128), nullable=False)
@@ -20,7 +20,7 @@ class Users(db.Model):
         return pwd_context.verify(password, self.password_User)
 
     def __repr__(self):
-        return f"Users('{self.user_ID}', '{self.nom_User}', '{self.prenom_User}', '{self.username}', '{self.Offres}')"
+        return f"Users('{self.user_ID}', '{self.nom_User}', '{self.prenom_User}', '{self.user_Mail}', '{self.Offres}')"
 
 
 class Offres(db.Model):

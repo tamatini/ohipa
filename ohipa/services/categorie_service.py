@@ -25,7 +25,7 @@ class Categories(Resource):
         if Categorie.query.filter_by(categorie_Nom=categorie_nom.lower()).first():
             return jsonify('cette catégorie existe déjà')
         else:
-            #Commit la catégorie
+            #créer la catégorie si celle-ci n'est pas créer
             categorie = Categorie(categorie_Nom=categorie_nom.lower())
             db.session.add(categorie)
             db.session.commit()
