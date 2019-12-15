@@ -29,7 +29,7 @@ delete_user = api.model('Delete_User', {
 class UserList(Resource):
 
     def get(self):
-        return [{'ID': c.user_ID, 'user_Mail': c.user_Mail} for c in Users.query.all()]
+        return [{'ID': c.user_ID, 'user_Mail': c.user_Mail, 'nom_User':c.nom_User.upper(), 'prenom_User': c.prenom_User.capitalize()} for c in Users.query.all()]
 
     @api.expect(new_user)  
     def post(self):
@@ -40,7 +40,7 @@ class UserList(Resource):
         if Users.query.filter_by(user_Mail=mail).first():
             return jsonify('Cet utilisateur existe déjà')
         else:
-            user = Users(user_Mail=mail, nom_User=nom, prenom_User=prenom)
+            user = Users(user_Mail=mail, nom_User=nom.lower(), prenom_User=prenom.lower())
             user.hash_password(password)
             db.session.add(user)
             db.session.commit()

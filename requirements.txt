@@ -5,3 +5,4 @@ Flask-SQLAlchemy
 SQLAlchemy
 passlib
 psycopg2-binary
+flask_testing
