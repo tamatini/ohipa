@@ -29,7 +29,6 @@ class Iles(Resource):
             db.session.commit()
             return jsonify('Ile créer')
 
-    """
     @api.expect(ile)
     def delete(self):
         ile = request.json['nom_ile']
@@ -38,10 +37,10 @@ class Iles(Resource):
             delete_ile = iles.query.get(iles.ile_ID) # Récupère l'ID de l'île
             db.session.delete(delete_ile) # commit la suppression
             db.session.commit()
-            return jsonify('Ile supprimmer')
+            return jsonify('Ile supprimer')
         else:
             return jsonify("cette îles n'est pas dans la liste")
-    """
+
 
 @api.route('/commune')
 class commune(Resource):

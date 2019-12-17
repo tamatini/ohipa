@@ -29,7 +29,8 @@ delete_user = api.model('Delete_User', {
 class UserList(Resource):
 
     def get(self):
-        return [{'ID': c.user_ID, 'mail_User': c.mail_User, 'nom_User':c.nom_User.upper(), 'prenom_User': c.prenom_User.capitalize()} for c in Users.query.all()]
+        return [{'ID': c.user_ID, 'mail_User': c.mail_User, 'nom_User':c.nom_User.upper(), \
+            'prenom_User': c.prenom_User.capitalize(), 'password_User': c.password_User} for c in Users.query.all()]
 
     @api.expect(new_user)  
     def post(self):
