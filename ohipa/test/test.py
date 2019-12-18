@@ -1,15 +1,13 @@
 import unittest
 import requests
 import json
-
+from ohipa import create_app, db
 
 class ViewsTest(unittest.TestCase):
 
     def test_home_Views(self):
         response = requests.get(url='http://localhost:5000')
         self.assertEqual(response.status_code, 200)
-
-    
 
     def test_return_communes_view(self):
         response = requests.get(url='http://localhost:5000/Communes/')
