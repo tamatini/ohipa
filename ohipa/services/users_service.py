@@ -53,8 +53,6 @@ class UserList(Resource):
         password = request.json['password_User']
         new_Password = request.json['new_Password']
         user = Users.query.filter_by(mail_User=mail).first()
-        nom = user.nom_User
-        prenom = user.prenom_User
         if not user or not user.verify_password(password):
             return jsonify("Vérifier le nom d'utilisateur ou le mot de passe")
         if password != new_Password:

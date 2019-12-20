@@ -40,16 +40,3 @@ class Iles(Resource):
             return jsonify('Ile supprimer')
         else:
             return jsonify("cette îles n'est pas dans la liste")
-
-
-@api.route('/commune')
-class commune(Resource):
-    # Retourne la liste des communes en fonction de l'île
-    @api.expect(ile)
-    def post(self):
-        nom_ile = request.json['nom_ile']
-        # Vérifie l'île et récupère l'ID
-        iles = Ile.query.filter_by(ile_Nom=nom_ile.lower()).first()
-        ile_ID = Ile.query.get(iles.ile_ID)
-        # Retourne la liste
-        return [{'commune': c.commune_Nom.capitalize()} for c in Commune.query.filter_by(ile=ile_ID)]

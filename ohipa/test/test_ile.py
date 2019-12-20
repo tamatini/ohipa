@@ -22,6 +22,10 @@ class IleServiceTests(unittest.TestCase):
     def setUp(self):
         create_App_Test(self)
 
+    def test_post_new_ile(self):
+        response = self.app.post('/Iles/', json={'nom_ile':'Tahiti'})
+        self.assertEqual(response.json, 'Ile créer')
+
     def test_return_ile_view(self):
         response = self.app.get('/Iles/')
         self.assertEqual(response.status_code, 200)
