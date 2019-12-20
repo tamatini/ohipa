@@ -14,7 +14,7 @@ class Users(db.Model):
     Offres = db.relationship('Offres', backref='offres')
 
     def hash_password(self, password):
-        self.password_User = pwd_context.encrypt(password)
+        self.password_User = pwd_context.hash(password)
 
     def verify_password(self, password):
         return pwd_context.verify(password, self.password_User)
