@@ -13,7 +13,7 @@ new_user = api.model('User', {
     'password_User': fields.String,
 })
 
-update_user = api.model('Update_User', {
+update_Password = api.model('update_Password', {
     'mail_User': fields.String,
     'password_User': fields.String,
     'new_Password': fields.String
@@ -47,7 +47,7 @@ class UserList(Resource):
             db.session.commit()
             return  jsonify("cet utilisateur à été créer")
 
-    @api.expect(update_user)
+    @api.expect(update_Password)
     def put(self):
         mail = request.json['mail_User']
         password = request.json['password_User']

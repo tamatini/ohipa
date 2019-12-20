@@ -6,19 +6,19 @@ from ohipa import create_app, db
 class ViewsTest(unittest.TestCase):
 
     def test_home_Views(self):
-        response = requests.get(url='http://localhost:5000')
+        response = requests.get('/')
         self.assertEqual(response.status_code, 200)
 
     def test_return_communes_view(self):
-        response = requests.get(url='http://localhost:5000/Communes/')
+        response = requests.get('/Communes/')
         self.assertEqual(response.status_code, 200)
 
     def test_return_offre_view(self):
-        response = requests.get(url="http://localhost:5000/Offres/")
+        response = requests.get("/Offre/")
         self.assertEqual(response.status_code, 200)
 
     def test_return_categories_view(self):
-        response = requests.get(url="http://localhost:5000/Categorie/")
+        response = requests.get("/Categorie/")
         self.assertEqual(response.status_code, 200)
 
 
