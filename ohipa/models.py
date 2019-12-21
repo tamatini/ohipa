@@ -54,7 +54,7 @@ class Commune(db.Model):
     db.__mapper__ = {"column_prefix": "Commune"}
     commune_ID = Column(Integer, nullable=False, primary_key=True)
     commune_Nom = Column(String(30), nullable=False)
-    ile_ID = Column(Integer, ForeignKey('ile.ile_ID'))
+    ile_Nom = Column(Integer, ForeignKey('ile.ile_Nom'))
 
     def __repr__(self):
         return f"Commune('{self.commune_ID}', '{self.commune_Nom}', '{self.ile_ID}')"

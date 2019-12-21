@@ -15,7 +15,7 @@ new_commune = api.model('Commune', {
 class Commune_List(Resource):
     #Listing des Communes
     def get(self):
-        return [{'Commune': c.commune_Nom.lower(), 'ile': c.ile_ID} for c in Commune.query.all()]
+        return [{'Commune': c.commune_Nom.capitalize(), 'ile': c.ile_Nom.capitalize()} for c in Commune.query.all()]
 
     @api.expect(new_commune)
     #Méthode de création des communes
@@ -23,14 +23,14 @@ class Commune_List(Resource):
         nom_commune = request.json['nom_commune']
         nom_ile = request.json['nom_ile']
         iles = Ile.query.filter_by(ile_Nom=nom_ile.lower()).first()
-        ile_ID = Ile.query.get(iles.ile_ID)
-        if ile_ID != ile_ID:
+        ile = Ile.query.get(iles.ile_Nom)
+        if nom_ile == ile:
             return jsonify("Cette île n'existe pas")
         else:
             if Commune.query.filter_by(commune_Nom=nom_commune.lower()).first():
                 return jsonify('Cette commune existe déjà')
             else:
-                commune = Commune(commune_Nom=nom_commune.lower(), ile=ile_ID)
+                commune = Commune(commune_Nom=nom_commune.lower(), ile_Nom=nom_ile.lower())
                 db.session.add(commune)
                 db.session.commit()
                 return ('La commune à été créer')
