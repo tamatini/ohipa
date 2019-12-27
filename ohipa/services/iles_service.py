@@ -15,7 +15,7 @@ ile = api.model('ile', {
 class Iles(Resource):
     # Retourne la liste des îles
     def get(self):
-        return [{'ile': c.ile_Nom.capitalize()} for c in Ile.query.all()]
+        return [{'ile': c.ile_Nom.capitalize(), 'communes': c.communes} for c in Ile.query.all()]
 
     @api.expect(ile)
     def post(self):
