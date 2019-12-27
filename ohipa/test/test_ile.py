@@ -49,9 +49,6 @@ class IleServiceTests(unittest.TestCase):
         response = self.app.get('/Iles/')
         self.assertEqual(len(response.json), 1)
 
-    def test_ile_return_all_commune(self):
-        pass 
-
 if __name__ == '__main__':
     unittest.main()
     

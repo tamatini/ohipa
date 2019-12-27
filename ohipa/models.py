@@ -1,5 +1,6 @@
 from . import db
 from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy.orm import relationship
 from passlib.apps import custom_app_context as pwd_context
 
 
@@ -36,7 +37,7 @@ class Offres(db.Model):
 
     def __repr__(self):
         return f"Offres('{self.offre_ID}', '{self.offre_Details}', '{self.Categories}', '{self.user_ID}')," \
-            f"'{self.commune_ID}', '{self.ile_ID}'"
+            f"'{self.commune_ID}', '{self.ile_ID}')"
 
 
 class Categorie(db.Model):
@@ -49,23 +50,29 @@ class Categorie(db.Model):
         return f"Categories('{self.categories_ID}','{self.categories_Name}')"
 
 
-class Commune(db.Model):
-    db.__tablename__ = "Commune"
-    db.__mapper__ = {"column_prefix": "Commune"}
-    commune_ID = Column(Integer, nullable=False, primary_key=True)
-    commune_Nom = Column(String(30), nullable=False)
-    ile_Nom = Column(Integer, ForeignKey('ile.ile_Nom'))
-
-    def __repr__(self):
-        return f"Commune('{self.commune_ID}', '{self.commune_Nom}', '{self.ile_ID}')"
-
-
 class Ile(db.Model):
     db.__tablename__ = "Ile"
     db.__mapper_ = {"column_prefix": "Ile"}
     ile_ID = Column(Integer, nullable=False, primary_key=True)
     ile_Nom = Column(String(30), nullable=False)
-    communes = db.relationship('Commune', backref='ile')
+    communes = db.relationship("Commune", backref="iles")
 
     def __repr__(self):
-        return f"('{self.ile_ID}', '{self.ile_Nom}', '{self.communes}'"
+        return f"ile('{self.ile_ID}', '{self.ile_Nom}', '{self.communes}')"
+
+
+class Commune(db.Model):
+    db.__tablename__ = "Commune"
+    db.__mapper__ = {"column_prefix": "Commune"}
+    commune_ID = Column(Integer, nullable=False, primary_key=True)
+    commune_Nom = Column(String(30), nullable=False)
+    ile_ID = Column(Integer, ForeignKey('ile.ile_ID'))
+
+    def __repr__(self):
+        return f"Commune('{self.commune_ID}', '{self.commune_Nom}')"
+
+
+
+
+
+    
